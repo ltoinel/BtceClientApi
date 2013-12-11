@@ -5,18 +5,18 @@ A great Java client for BTC-e API (https://btc-e.com/api/documentation).
 
 ### Features
 
-* Supports Public API : https://btc-e.com/api/3/
-** depth
-** ticker
-** trades
+Supports Public API : https://btc-e.com/api/3/
+* Depth
+* Ticker
+* Trades
 
-* Supports Private API : https://btc-e.com/tapi/
-** CancelOrder
-** Trade
-** ActiveOrders
-** TradeHistory
-** TransHistory
-** getInfo
+Supports Private API : https://btc-e.com/tapi/
+* CancelOrder
+* Trade
+* ActiveOrders
+* TradeHistory
+* TransHistory
+* getInfo
 
 ### Donate
 
