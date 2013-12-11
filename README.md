@@ -3,6 +3,7 @@
 
 A robust and well documented Java client for BTC-e APIs (https://btc-e.com/api/documentation).
 
+This client uses : 
 * Jackson for JSON binding
 * Logback for the logging
 * Fluent-hc for the HTTP requests
@@ -24,7 +25,7 @@ Supports Private API : https://btc-e.com/tapi/
 
 ### Donate
 
-If you like an use my Java client API : 
+If you like and use my Java client API, you can send me  0.001 LTC or BTC or more ;-)
 
     BTC: 1Ga1pTmLdUrHaqT51YYg5Y7bzcsuMVHEiD
     LTC: LYFZGZfbgPcXsyyn7v4wPXYBwnZebHRYsd
