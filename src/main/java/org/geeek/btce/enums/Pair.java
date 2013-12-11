@@ -5,6 +5,7 @@ package org.geeek.btce.enums;
  * 
  * @author Ludovic Toinel
  */
+@SuppressWarnings("javadoc")
 public enum Pair {
 	
 	/** BTC */

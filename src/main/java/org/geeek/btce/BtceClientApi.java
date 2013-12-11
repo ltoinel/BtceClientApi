@@ -47,7 +47,7 @@ import org.slf4j.LoggerFactory;
 
 
 /**
- * A Java Client for BTC-e API.
+ * A Java Client for BTC-e APIs.
  * 
  * @author Ludovic Toinel
  */
@@ -192,6 +192,7 @@ public class BtceClientApi {
      * @return The returned data as JSON or null, if the request failed.
      * @throws BtceTechnicalException 
      * @throws BtceFunctionalException 
+     * @see "http://pastebin.com/K25Nk2Sv"
      */
     private final JSONObject authenticatedHTTPRequest(PrivateMethod method, Map<String, String> arguments) throws BtceTechnicalException, BtceFunctionalException {
     	 

@@ -3,6 +3,10 @@
 
 A robust and well documented Java client for BTC-e APIs (https://btc-e.com/api/documentation).
 
+* Jackson for JSON binding
+* Logback for the logging
+* Fluent-hc for the HTTP requests
+
 ### Features
 
 Supports Public API : https://btc-e.com/api/3/

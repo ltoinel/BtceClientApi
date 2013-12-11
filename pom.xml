@@ -5,36 +5,46 @@
 	<artifactId>BtceClientApi</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<name>BtceClientApi</name>
-	<description>Java client for BTC-E API</description>
-
-
+	<description>Java client for BTC-e APIs</description>
+	
 	<dependencies>
+	
+		<!--  JSONObject -->
 		<dependency>
 			<groupId>net.sf.json-lib</groupId>
 			<artifactId>json-lib</artifactId>
 			<version>2.4</version>
 			<classifier>jdk15</classifier>
 		</dependency>
+		
+		<!--  Hex tools -->
 		<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
 			<version>1.8</version>
 		</dependency>
+		
+		<!-- HTTP Requests -->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>fluent-hc</artifactId>
 			<version>4.3.1</version>
 		</dependency>
+		
+		<!-- JSON Mapper for easy binding -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>1.9.13</version>
 		</dependency>
+		
+		<!-- Logger -->
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>1.0.13</version>
 		</dependency>
+		
 	</dependencies>
 
 	<organization>
