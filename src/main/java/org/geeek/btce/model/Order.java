@@ -1,10 +1,10 @@
-package org.geeek.providers.btce.beans;
+package org.geeek.btce.model;
 
-import org.geeek.providers.btce.enums.Pair;
-import org.geeek.providers.btce.enums.TransactionType;
+import org.geeek.btce.enums.Pair;
+import org.geeek.btce.enums.TransactionType;
 
 /**
- * An Order entry.
+ * An Order entry on BTC-e.
  * 
  * @author Ludovic Toinel
  */

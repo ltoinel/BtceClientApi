@@ -1,7 +1,7 @@
-package org.geeek.providers.btce.enums;
+package org.geeek.btce.enums;
 
 /**
- * The list of the available methods on the private BTC-e API
+ * List of the available methods on the private BTC-e API
  * 
  * @author Ludovic Toinel
  *

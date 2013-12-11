@@ -1,4 +1,4 @@
-package org.geeek.providers.btce.beans;
+package org.geeek.btce.model;
 
 
 /**

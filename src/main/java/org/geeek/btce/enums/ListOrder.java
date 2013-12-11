@@ -1,7 +1,7 @@
-package org.geeek.providers.btce.enums;
+package org.geeek.btce.enums;
 
 /**
- * List order.
+ * List sort.
  * 
  * @author Ludovic Toinel
  */

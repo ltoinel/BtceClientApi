@@ -1,4 +1,4 @@
-package org.geeek.providers.btce.exception;
+package org.geeek.btce.exception;
 
 /**
  * Abstract BTC-e Exception.

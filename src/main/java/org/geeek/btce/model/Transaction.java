@@ -1,8 +1,8 @@
-package org.geeek.providers.btce.beans;
+package org.geeek.btce.model;
 
 
 /**
- * A trade transaction.
+ * A trade transaction on BTC-e.
  * 
  * @author Ludovic Toinel
  */

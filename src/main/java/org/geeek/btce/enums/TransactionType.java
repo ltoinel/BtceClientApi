@@ -1,7 +1,7 @@
-package org.geeek.providers.btce.enums;
+package org.geeek.btce.enums;
 
 /**
- * Transaction type.
+ * Transaction type on the BTC-e API.
  * 
  * @author Ludovic Toinel
  */

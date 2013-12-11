@@ -1,10 +1,10 @@
-package org.geeek.providers.btce.beans;
+package org.geeek.btce.model;
 
 
 /**
  * BTC-e Account rights.
  * 
- * @author Ludovic
+ * @author Ludovic Toinel
  *
  */
 public class Rights {

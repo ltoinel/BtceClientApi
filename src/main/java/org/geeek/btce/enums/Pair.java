@@ -1,5 +1,10 @@
-package org.geeek.providers.btce.enums;
+package org.geeek.btce.enums;
 
+/**
+ * List of all the available pair on BTC-e.
+ * 
+ * @author Ludovic Toinel
+ */
 public enum Pair {
 	
 	/** BTC */

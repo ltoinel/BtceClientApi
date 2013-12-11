@@ -1,7 +1,7 @@
-package org.geeek.providers.btce.beans;
+package org.geeek.btce.model;
 
 /**
- * A Ticker.
+ * A Ticker on BTC-e.
  * 
  * @author Ludovic Toinel
  */
