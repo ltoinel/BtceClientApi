@@ -1,7 +1,7 @@
-BtceClientApi
-=============
+ Java Client for BTC-e APIs
+===========================
 
-A great Java client for BTC-e API (https://btc-e.com/api/documentation).
+A robust and well documented Java client for BTC-e APIs (https://btc-e.com/api/documentation).
 
 ### Features
 
