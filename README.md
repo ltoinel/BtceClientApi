@@ -32,6 +32,7 @@ If you like an use my Java client API :
 ### Usage
 
 ```java
+// You can retrieve the following key and secret on https://btc-e.com/profile#api_keys
 String key = "XXXXXXX-XXXXXXX-XXXXXXX-XXXXXXX-XXXXXXX";
 String secret = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
 
