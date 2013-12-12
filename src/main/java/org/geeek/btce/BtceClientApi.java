@@ -39,8 +39,10 @@ import org.geeek.btce.enums.TransactionType;
 import org.geeek.btce.exception.BtceFunctionalException;
 import org.geeek.btce.exception.BtceTechnicalException;
 import org.geeek.btce.model.AccountInfo;
+import org.geeek.btce.model.Depth;
 import org.geeek.btce.model.Order;
 import org.geeek.btce.model.Ticker;
+import org.geeek.btce.model.Trade;
 import org.geeek.btce.model.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -119,7 +121,7 @@ public class BtceClientApi {
 	}
 	
 	/**
-	 * Synchronized Nonce generator.
+	 * Synchronized Nonce generator to avoid that two requests have the same nonce.
 	 * 
 	 * @return The increased nonce value.
 	 */
@@ -644,13 +646,33 @@ public class BtceClientApi {
      * @throws JsonMappingException 
      * @throws JsonParseException 
      */
-    public Ticker getTrades(Pair pair) throws BtceFunctionalException, BtceTechnicalException, JsonParseException, JsonMappingException, IOException{
+    public List<Trade> getTrades(Pair pair) throws BtceFunctionalException, BtceTechnicalException, JsonParseException, JsonMappingException, IOException{
     
-    	//JSONObject jsonObject = publicHTTPRequest(PublicMethod.trades, pair.name());
-    	//List<Trade>  ticker = _mapper.readValue(jsonObject.toString(), Ticker.class);
-    	// TODO 
-    	//return ticker;
-    	return null;
+    	JSONObject jsonObject = publicHTTPRequest(PublicMethod.trades, pair.name());
+    	Map<String,List<Trade>> trades = _mapper.readValue(jsonObject.toString(), new TypeReference<Map<String,List<Trade>>>() { });
+ 
+    	return trades.get(pair.name());
     }
    
+    /**
+     * Get the depth for the pair.
+     * 
+     * @param pair The pair.
+     * @return The depths for this pair.
+     * 
+     * @throws BtceFunctionalException
+     * @throws BtceTechnicalException
+     * @throws JsonParseException
+     * @throws JsonMappingException
+     * @throws IOException
+     */
+    public Depth getDepth(Pair pair) throws BtceFunctionalException, BtceTechnicalException, JsonParseException, JsonMappingException, IOException{
+        
+    	JSONObject jsonObject = publicHTTPRequest(PublicMethod.depth, pair.name());
+    	Map<String,Depth> depth = _mapper.readValue(jsonObject.toString(), new TypeReference<Map<String,Depth>>() { });
+ 
+    	return depth.get(pair.name());
+    }
+   
+    
 }
