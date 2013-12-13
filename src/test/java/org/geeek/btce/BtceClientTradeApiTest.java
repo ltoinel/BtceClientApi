@@ -54,7 +54,7 @@ public class BtceClientTradeApiTest {
 	 * @throws JsonParseException 
 	 */
 	@Test
-	public void testGetAccountInfo() throws JsonParseException, JsonMappingException, BtceTechnicalException, BtceFunctionalException, IOException {
+	public void testGetAccountInfo() throws BtceTechnicalException, BtceFunctionalException {
 		
 		// Call the service
 		AccountInfo accountInfo = btceClientTradeApi.getAccountInfo();

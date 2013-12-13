@@ -37,7 +37,7 @@ If you like and use my Java client API, you can send me  0.001 LTC or BTC or mor
 String key = "XXXXXXX-XXXXXXX-XXXXXXX-XXXXXXX-XXXXXXX";
 String secret = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
 
-// Create a new client 
+// Instanciate a new client 
 BtceClientTradeApi btceClientTradeApi = new BtceClientTradeApi(key,secret);
 
 // Retrieve the account info
@@ -61,6 +61,7 @@ List<Transaction> transactions = btceClientTradeApi.cancelAllOrders();
 
 
 ```java
+// Instanciate a new client 
 BtceClientApi btceClientApi = new BtceClientApi();
 
 // Get the ticker for the pair

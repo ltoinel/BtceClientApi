@@ -37,7 +37,7 @@ public class BtceClientApi {
 	private final static Logger LOGGER = LoggerFactory.getLogger(BtceClientApi.class);
 	
 	// Server URI
-	private final static String _public_api_uri = "https://btc-e.com/api/3/";
+	private final static String API_URI = "https://btc-e.com/api/3/";
 	
 	// JSON Object Mapper
 	private ObjectMapper _mapper;
@@ -64,7 +64,7 @@ public class BtceClientApi {
 	 */
 	private final JSONObject publicHTTPRequest(PublicMethod method, String arg) throws BtceFunctionalException, BtceTechnicalException{
 		try{
-			String uri = _public_api_uri + method.name() + "/" + arg;
+			String uri = API_URI + method.name() + "/" + arg;
 			LOGGER.debug("Public HTTP Request : " + uri);
 			
 			Response response = Request.Get(uri).execute();
@@ -127,10 +127,19 @@ public class BtceClientApi {
      * @throws JsonMappingException 
      * @throws JsonParseException 
      */
-    public Ticker getTicker(Pair pair) throws BtceFunctionalException, BtceTechnicalException, JsonParseException, JsonMappingException, IOException{
+    public Ticker getTicker(Pair pair) throws BtceFunctionalException, BtceTechnicalException{
     
     	JSONObject jsonObject = publicHTTPRequest(PublicMethod.ticker, pair.name());
-    	Ticker  ticker = _mapper.readValue(jsonObject.getString(pair.name()), Ticker.class);
+    	Ticker ticker;
+		try {
+			ticker = _mapper.readValue(jsonObject.getString(pair.name()), Ticker.class);
+		} catch (JsonParseException e) {
+			throw new BtceTechnicalException("BTC-e Json parse exeption", e);
+		} catch (JsonMappingException e) {
+			throw new BtceTechnicalException("BTC-e Json mapping exeption", e);
+		} catch (IOException e) {
+			throw new BtceTechnicalException("BTC-e IO exeption", e);
+		}
     	
     	return ticker;
     }
@@ -148,10 +157,20 @@ public class BtceClientApi {
      * @throws JsonMappingException 
      * @throws JsonParseException 
      */
-    public List<Trade> getTrades(Pair pair) throws BtceFunctionalException, BtceTechnicalException, JsonParseException, JsonMappingException, IOException{
+    public List<Trade> getTrades(Pair pair) throws BtceFunctionalException, BtceTechnicalException{
     
     	JSONObject jsonObject = publicHTTPRequest(PublicMethod.trades, pair.name());
-    	Map<String,List<Trade>> trades = _mapper.readValue(jsonObject.toString(), new TypeReference<Map<String,List<Trade>>>() { });
+    	Map<String, List<Trade>> trades;
+		try {
+			trades = _mapper.readValue(jsonObject.toString(), new TypeReference<Map<String,List<Trade>>>() { });
+		} catch (JsonParseException e) {
+			throw new BtceTechnicalException("BTC-e Json parse exeption", e);
+		} catch (JsonMappingException e) {
+			throw new BtceTechnicalException("BTC-e Json mapping exeption", e);
+		} catch (IOException e) {
+			throw new BtceTechnicalException("BTC-e IO exeption", e);
+		}
+    	
  
     	return trades.get(pair.name());
     }
@@ -168,10 +187,20 @@ public class BtceClientApi {
      * @throws JsonMappingException
      * @throws IOException
      */
-    public Depth getDepth(Pair pair) throws BtceFunctionalException, BtceTechnicalException, JsonParseException, JsonMappingException, IOException{
+    public Depth getDepth(Pair pair) throws BtceFunctionalException, BtceTechnicalException{
         
     	JSONObject jsonObject = publicHTTPRequest(PublicMethod.depth, pair.name());
-    	Map<String,Depth> depth = _mapper.readValue(jsonObject.toString(), new TypeReference<Map<String,Depth>>() { });
+    	Map<String, Depth> depth;
+		try {
+			depth = _mapper.readValue(jsonObject.toString(), new TypeReference<Map<String,Depth>>() { });
+		} catch (JsonParseException e) {
+			throw new BtceTechnicalException("BTC-e Json parse exeption", e);
+		} catch (JsonMappingException e) {
+			throw new BtceTechnicalException("BTC-e Json mapping exeption", e);
+		} catch (IOException e) {
+			throw new BtceTechnicalException("BTC-e IO exeption", e);
+		}
+    	
  
     	return depth.get(pair.name());
     }

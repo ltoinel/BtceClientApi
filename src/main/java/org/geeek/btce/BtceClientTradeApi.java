@@ -43,9 +43,8 @@ import org.geeek.btce.model.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 /**
- * A Java Client for BTC-e APIs.
+ * A Java Client for BTC-e trade APIs.
  * 
  * @author Ludovic Toinel
  */
@@ -55,10 +54,10 @@ public class BtceClientTradeApi {
 	private final static Logger LOGGER = LoggerFactory.getLogger(BtceClientTradeApi.class);
 	
 	// Server URI
-	private final static String _private_api_uri = "https://btc-e.com/tapi/";
+	private final static String API_URI = "https://btc-e.com/tapi/";
 	
-	// Nonce token
-	private static long _nonce = 0;
+	// Nonce token  
+	private long _nonce = 0;
 
 	// Private API Key
 	private String _key;
@@ -163,8 +162,8 @@ public class BtceClientTradeApi {
 		} 
 		
 		try {
-			LOGGER.debug("Private HTTP Request : " + _private_api_uri);
-			Response response = Request.Post(_private_api_uri)
+			LOGGER.debug("Private HTTP Request : " + API_URI);
+			Response response = Request.Post(API_URI)
 										.setHeaders(headers.toArray(new Header[0]))
 										.bodyString(postData, ContentType.APPLICATION_FORM_URLENCODED).execute();
 
@@ -292,10 +291,19 @@ public class BtceClientTradeApi {
      * @throws BtceTechnicalException 
      * @throws BtceFunctionalException 
      */
-    public AccountInfo getAccountInfo() throws JsonParseException, JsonMappingException, IOException, BtceTechnicalException, BtceFunctionalException{
+    public AccountInfo getAccountInfo() throws  BtceTechnicalException, BtceFunctionalException{
     	
     	JSONObject jsonObject = authenticatedHTTPRequest(PrivateMethod.getInfo,null);
-		AccountInfo	accountInfo = _mapper.readValue(jsonObject.toString(), AccountInfo.class);
+		AccountInfo accountInfo;
+		try {
+			accountInfo = _mapper.readValue(jsonObject.toString(), AccountInfo.class);
+		} catch (JsonParseException e) {
+			throw new BtceTechnicalException("BTC-e Json parse exeption", e);
+		} catch (JsonMappingException e) {
+			throw new BtceTechnicalException("BTC-e Json mapping exeption", e);
+		} catch (IOException e) {
+			throw new BtceTechnicalException("BTC-e IO exeption", e);
+		}
 
     	return accountInfo;
     }
@@ -319,7 +327,7 @@ public class BtceClientTradeApi {
      * @throws BtceTechnicalException 
      * @throws BtceFunctionalException 
      */
-    public Map<String,Order> getTransactionHistory(Long from, Long count, Long from_id, Long end_id, ListOrder order, Long since, Long end) throws JsonParseException, JsonMappingException, IOException, BtceTechnicalException, BtceFunctionalException{
+    public Map<String,Order> getTransactionHistory(Long from, Long count, Long from_id, Long end_id, ListOrder order, Long since, Long end) throws BtceTechnicalException, BtceFunctionalException{
     	
     	Map<String, String> arguments = new HashMap<String, String>();
     	if (from != null){
@@ -346,7 +354,16 @@ public class BtceClientTradeApi {
     	
     	// Call the active orders remote service
     	JSONObject jsonObject = authenticatedHTTPRequest(PrivateMethod.TransHistory,arguments);
-    	Map<String,Order> orders = _mapper.readValue(jsonObject.toString(), new TypeReference<Map<String,Order>>() { });
+    	Map<String, Order> orders;
+		try {
+			orders = _mapper.readValue(jsonObject.toString(), new TypeReference<Map<String,Order>>() { });
+		} catch (JsonParseException e) {
+			throw new BtceTechnicalException("BTC-e Json parse exeption", e);
+		} catch (JsonMappingException e) {
+			throw new BtceTechnicalException("BTC-e Json mapping exeption", e);
+		} catch (IOException e) {
+			throw new BtceTechnicalException("BTC-e IO exeption", e);
+		}
     	
     	return orders;
     }
@@ -370,7 +387,7 @@ public class BtceClientTradeApi {
      * @throws BtceTechnicalException 
      * @throws BtceFunctionalException 
      */
-    public Map<String,Order> getTradeHistory(Long from, Long count, Long from_id, Long end_id, ListOrder order, Long since, Long end, Pair pair) throws JsonParseException, JsonMappingException, IOException, BtceTechnicalException, BtceFunctionalException{
+    public Map<String,Order> getTradeHistory(Long from, Long count, Long from_id, Long end_id, ListOrder order, Long since, Long end, Pair pair) throws BtceTechnicalException, BtceFunctionalException{
     	
     	Map<String, String> arguments = new HashMap<String, String>();
     	if (from != null){
@@ -400,7 +417,16 @@ public class BtceClientTradeApi {
     	
     	// Call the active orders remote service
     	JSONObject jsonObject = authenticatedHTTPRequest(PrivateMethod.TradeHistory,arguments);
-    	Map<String,Order> orders = _mapper.readValue(jsonObject.toString(), new TypeReference<Map<String,Order>>() { });
+    	Map<String, Order> orders;
+		try {
+			orders = _mapper.readValue(jsonObject.toString(), new TypeReference<Map<String,Order>>() { });
+		} catch (JsonParseException e) {
+			throw new BtceTechnicalException("BTC-e Json parse exeption", e);
+		} catch (JsonMappingException e) {
+			throw new BtceTechnicalException("BTC-e Json mapping exeption", e);
+		} catch (IOException e) {
+			throw new BtceTechnicalException("BTC-e IO exeption", e);
+		}
     	
     	return orders;
     }
@@ -416,7 +442,7 @@ public class BtceClientTradeApi {
      * @throws BtceTechnicalException 
      * @throws BtceFunctionalException 
      */
-    public Map<String,Order> getActiveOrders() throws JsonParseException, JsonMappingException, IOException, BtceTechnicalException, BtceFunctionalException{
+    public Map<String,Order> getActiveOrders() throws BtceTechnicalException, BtceFunctionalException{
     	return getActiveOrders(null);
     }
     	
@@ -433,7 +459,7 @@ public class BtceClientTradeApi {
      * @throws BtceTechnicalException 
      * @throws BtceFunctionalException 
      */
-    public Map<String,Order> getActiveOrders(Pair pair) throws JsonParseException, JsonMappingException, IOException, BtceTechnicalException, BtceFunctionalException{
+    public Map<String,Order> getActiveOrders(Pair pair) throws BtceTechnicalException, BtceFunctionalException{
     	Map<String, String> arguments = new HashMap<String, String>();
     	if (pair!= null){
     		arguments.put("pair", pair.name());
@@ -444,7 +470,15 @@ public class BtceClientTradeApi {
     	
     	try{
     		JSONObject jsonObject = authenticatedHTTPRequest(PrivateMethod.ActiveOrders,arguments);
-    		orders = _mapper.readValue(jsonObject.toString(), new TypeReference<Map<String,Order>>() { });
+    		try {
+				orders = _mapper.readValue(jsonObject.toString(), new TypeReference<Map<String,Order>>() { });
+    		} catch (JsonParseException e) {
+    			throw new BtceTechnicalException("BTC-e Json parse exeption", e);
+    		} catch (JsonMappingException e) {
+    			throw new BtceTechnicalException("BTC-e Json mapping exeption", e);
+    		} catch (IOException e) {
+    			throw new BtceTechnicalException("BTC-e IO exeption", e);
+    		}
     	} catch(BtceFunctionalException fe){
     		if (fe.getMessage().equals("no orders")){
     			return orders;
@@ -471,7 +505,7 @@ public class BtceClientTradeApi {
      * @throws BtceTechnicalException 
      * @throws BtceFunctionalException 
      */
-    public Transaction trade(Pair pair, TransactionType type, Double rate, Double amount) throws JsonParseException, JsonMappingException, IOException, BtceTechnicalException, BtceFunctionalException{
+    public Transaction trade(Pair pair, TransactionType type, Double rate, Double amount) throws BtceTechnicalException, BtceFunctionalException{
     	
     	Map<String, String> arguments = new HashMap<String, String>();
     	arguments.put("pair", pair.name());
@@ -481,7 +515,16 @@ public class BtceClientTradeApi {
     	
     	// Call the trade remote service
     	JSONObject jsonObject = authenticatedHTTPRequest(PrivateMethod.Trade,arguments);
-    	Transaction   transaction = _mapper.readValue(jsonObject.toString(), Transaction.class);
+    	Transaction transaction;
+		try {
+			transaction = _mapper.readValue(jsonObject.toString(), Transaction.class);
+		} catch (JsonParseException e) {
+			throw new BtceTechnicalException("BTC-e Json parse exeption", e);
+		} catch (JsonMappingException e) {
+			throw new BtceTechnicalException("BTC-e Json mapping exeption", e);
+		} catch (IOException e) {
+			throw new BtceTechnicalException("BTC-e IO exeption", e);
+		}
 
     	return transaction;
     }
@@ -490,7 +533,7 @@ public class BtceClientTradeApi {
      * Cancel an order on BTC-e.
      * 
      * @param orderId The order id to cancel.
-     * @return The transaction cancelation result.
+     * @return The transaction cancellation result.
      * 
      * @throws IOException 
      * @throws JsonMappingException 
@@ -498,14 +541,23 @@ public class BtceClientTradeApi {
      * @throws BtceTechnicalException 
      * @throws BtceFunctionalException 
      */
-    public Transaction cancelOrder(Long orderId) throws JsonParseException, JsonMappingException, IOException, BtceTechnicalException, BtceFunctionalException{
+    public Transaction cancelOrder(Long orderId) throws BtceTechnicalException, BtceFunctionalException{
  
     	Map<String, String> arguments = new HashMap<String, String>();
     	arguments.put("order_id",Long.toString(orderId));
     	
     	// Call the cancel order service
     	JSONObject jsonObject = authenticatedHTTPRequest(PrivateMethod.CancelOrder,arguments);
-    	Transaction  transaction = _mapper.readValue(jsonObject.toString(), Transaction.class);
+    	Transaction transaction;
+		try {
+			transaction = _mapper.readValue(jsonObject.toString(), Transaction.class);
+		} catch (JsonParseException e) {
+			throw new BtceTechnicalException("BTC-e Json parse exeption", e);
+		} catch (JsonMappingException e) {
+			throw new BtceTechnicalException("BTC-e Json mapping exeption", e);
+		} catch (IOException e) {
+			throw new BtceTechnicalException("BTC-e IO exeption", e);
+		}
 
     	return transaction;
     }
@@ -521,7 +573,7 @@ public class BtceClientTradeApi {
      * @throws BtceTechnicalException 
      * @throws BtceFunctionalException 
      */
-    public List<Transaction> cancelAllOrders() throws JsonParseException, JsonMappingException, IOException, BtceTechnicalException, BtceFunctionalException{
+    public List<Transaction> cancelAllOrders() throws BtceTechnicalException, BtceFunctionalException{
     	return cancelAllOrders(null);
     }
         
@@ -538,7 +590,7 @@ public class BtceClientTradeApi {
      * @throws BtceTechnicalException 
      * @throws BtceFunctionalException 
      */
-    public List<Transaction> cancelAllOrders(Pair pair) throws JsonParseException, JsonMappingException, IOException, BtceTechnicalException, BtceFunctionalException{
+    public List<Transaction> cancelAllOrders(Pair pair) throws BtceTechnicalException, BtceFunctionalException{
     	 
     	Map<String,Order> orders = getActiveOrders(pair);
     	List<Transaction> transactions = new ArrayList<Transaction>();

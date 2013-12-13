@@ -49,7 +49,7 @@ public class BtceClientApiTest {
 	 * @throws JsonParseException 
 	 */
 	@Test
-	public void testGetTicker() throws JsonParseException, JsonMappingException, BtceFunctionalException, BtceTechnicalException, IOException {
+	public void testGetTicker() throws BtceFunctionalException, BtceTechnicalException {
 		
 		// Get the ticker for the pair
 		Ticker ticker = btceClientApi.getTicker(Pair.btc_eur);
@@ -77,7 +77,7 @@ public class BtceClientApiTest {
 	 * @throws JsonParseException 
 	 */
 	@Test
-	public void testGetTrades() throws JsonParseException, JsonMappingException, BtceFunctionalException, BtceTechnicalException, IOException {
+	public void testGetTrades() throws BtceFunctionalException, BtceTechnicalException {
 		
 		// Get the trades for the pair
 		List<Trade> trades = btceClientApi.getTrades(Pair.btc_eur);
@@ -101,7 +101,7 @@ public class BtceClientApiTest {
 	 * @throws JsonParseException 
 	 */
 	@Test
-	public void testGetDepth() throws JsonParseException, JsonMappingException, BtceFunctionalException, BtceTechnicalException, IOException {
+	public void testGetDepth() throws BtceFunctionalException, BtceTechnicalException {
 		
 		// Get the trades for the pair
 		Depth depth = btceClientApi.getDepth(Pair.btc_eur);
