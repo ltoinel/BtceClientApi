@@ -38,32 +38,42 @@ String key = "XXXXXXX-XXXXXXX-XXXXXXX-XXXXXXX-XXXXXXX";
 String secret = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
 
 // Create a new client 
-BtceClientApi btceClientApi = new BtceClientApi(key,secret);
+BtceClientTradeApi btceClientTradeApi = new BtceClientTradeApi(key,secret);
 
 // Retrieve the account info
-AccountInfo accountInfo = btceClientApi.getAccountInfo();
-System.out.println("Amout of Euros:" + accountInfo.getFunds().getEur());
+AccountInfo accountInfo = btceClientTradeApi.getAccountInfo();
 
 // Make a trade
-Transaction transaction = btceClientApi.trade(Pair.ltc_eur, TransactionType.buy, 10, 0.1);
-long orderId = transaction.getOrder_id();
-System.out.println("Transaction Order Id:" + orderId);
+Transaction transaction = btceClientTradeApi.trade(Pair.ltc_eur, TransactionType.buy, 10, 0.1);
 
 // Cancel an order
-Transaction canceledTransaction = btceClientApi.cancelOrder(orderId,Pair.ltc_eur);
-System.out.println("Canceled Transaction Order Id:" + canceledTransaction.getOrder_id());
+Transaction canceledTransaction = btceClientTradeApi.cancelOrder(orderId,Pair.ltc_eur);
 
 // Get all active orders
-Map<String,Order> orders = btceClientApi.getActiveOrders();
-System.out.println("Number of active orders : " + orders.size());
+Map<String,Order> orders = btceClientTradeApi.getActiveOrders();
 
 // Cancel all the active orders
-List<Transaction> transactions = btceClientApi.cancelAllOrders();
-System.out.println("Number of orders canceled: " + transactions.size());
+List<Transaction> transactions = btceClientTradeApi.cancelAllOrders();
 
 ....Etc
 			
 ```
+
+
+```java
+BtceClientApi btceClientApi = new BtceClientApi();
+
+// Get the ticker for the pair
+Ticker ticker = btceClientApi.getTicker(Pair.btc_eur);
+
+// Get the trades for the pair
+List<Trade> trades = btceClientApi.getTrades(Pair.btc_eur);
+
+// Get the depth for the pair
+Depth depth = btceClientApi.getDepth(Pair.btc_eur);
+		
+```
+
 
 ### Legal
 

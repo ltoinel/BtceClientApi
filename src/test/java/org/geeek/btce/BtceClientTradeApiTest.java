@@ -29,7 +29,7 @@ import org.junit.Test;
 public class BtceClientTradeApiTest {
 
 	// the class instance to test
-	private BtceClientTradeApi btceClientApi = null;
+	private BtceClientTradeApi btceClientTradeApi = null;
 	
 	/**
 	 * @throws java.lang.Exception
@@ -41,7 +41,7 @@ public class BtceClientTradeApiTest {
 		properties.load(is);
 		String key = properties.getProperty("key");
 		String secret = properties.getProperty("secret");
-		btceClientApi = new BtceClientTradeApi(key, secret);
+		btceClientTradeApi = new BtceClientTradeApi(key, secret);
 	}
 
 	/**
@@ -57,7 +57,7 @@ public class BtceClientTradeApiTest {
 	public void testGetAccountInfo() throws JsonParseException, JsonMappingException, BtceTechnicalException, BtceFunctionalException, IOException {
 		
 		// Call the service
-		AccountInfo accountInfo = btceClientApi.getAccountInfo();
+		AccountInfo accountInfo = btceClientTradeApi.getAccountInfo();
 		
 		// Check funds
 		assertNotNull(accountInfo.getFunds());
