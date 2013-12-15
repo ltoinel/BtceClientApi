@@ -33,7 +33,7 @@ Supports Private API : https://btc-e.com/tapi/
 
 ### Todo list
 
-- [ ] Finalize the Unit tests
+[ ] Finalize the Unit tests
 
 
 ### Donate
@@ -43,7 +43,7 @@ If you like and use my Java client API, you can send me  0.001 LTC or BTC or mor
     BTC: 1Ga1pTmLdUrHaqT51YYg5Y7bzcsuMVHEiD
     LTC: LYFZGZfbgPcXsyyn7v4wPXYBwnZebHRYsd
     
-### Usage
+### Usage of BtceClientTradeApi
 
 ```java
 // You can retrieve the following key and secret on https://btc-e.com/profile#api_keys
@@ -72,6 +72,7 @@ List<Transaction> transactions = btceClientTradeApi.cancelAllOrders();
 			
 ```
 
+### Usage of BtceClientApi
 
 ```java
 // Instanciate a new client 
