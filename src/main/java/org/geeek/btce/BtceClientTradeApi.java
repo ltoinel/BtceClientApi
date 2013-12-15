@@ -46,7 +46,9 @@ import org.slf4j.LoggerFactory;
 /**
  * A Java Client for BTC-e trade APIs.
  * 
+ * @see "https://btc-e.com/api/documentation"
  * @author Ludovic Toinel
+ * @version 1.0.0
  */
 public class BtceClientTradeApi {
 

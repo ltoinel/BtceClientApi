@@ -22,14 +22,17 @@ import org.geeek.btce.exception.BtceTechnicalException;
 import org.geeek.btce.model.Depth;
 import org.geeek.btce.model.Ticker;
 import org.geeek.btce.model.Trade;
+import org.geeek.btce.model.PairInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
 /**
- * A Java Client for BTC-e APIs.
+ * A Java Client for BTC-e V3 APIs.
  * 
+ * @see "https://btc-e.com/api/3/documentation#info"
  * @author Ludovic Toinel
+ * @version 1.0.0
  */
 public class BtceClientApi {
 
@@ -64,7 +67,12 @@ public class BtceClientApi {
 	 */
 	private final JSONObject publicHTTPRequest(PublicMethod method, String arg) throws BtceFunctionalException, BtceTechnicalException{
 		try{
-			String uri = API_URI + method.name() + "/" + arg;
+			String uri = API_URI + method.name();
+			
+			if (arg != null){
+				 uri = uri + "/" + arg;
+			}
+			
 			LOGGER.debug("Public HTTP Request : " + uri);
 			
 			Response response = Request.Get(uri).execute();
@@ -116,7 +124,9 @@ public class BtceClientApi {
  
 	
     /**
-     * Get the current ticker for a pair.
+     * This method provides all the information about bidding on a pair, such as: the highest price, lowest price, 
+     * average price, trading volume, trading volume in the currency of the last deal, the price of buying and selling. 
+     * All information is provided in the last 24 hours.
      * 
      * @param pair The pair.
      * @return The current ticker for this pair.
@@ -146,7 +156,9 @@ public class BtceClientApi {
     
     
     /**
-     * Get the trades for the pair.
+     * This method provides information on the latest deals.
+     * Optional further receives GET-parameter limit , which indicates how many transactions need to display (150 by default).
+     * Takes a value less than 2000.
      * 
      * @param pair The pair.
      * @return The trades for this pair.
@@ -176,7 +188,9 @@ public class BtceClientApi {
     }
    
     /**
-     * Get the depth for the pair.
+     * This method provides information on active warrants pair.
+     * Additionally takes an optional parameter GET- limit , which indicates how many orders you want to display (default 150).
+     * Takes a value less than 2000.
      * 
      * @param pair The pair.
      * @return The depths for this pair.
@@ -203,6 +217,33 @@ public class BtceClientApi {
     	
  
     	return depth.get(pair.name());
+    }
+    
+    /**
+     * This method provides all the information about currently active pairs, such as the maximum number of digits 
+     * after the decimal point in the auction, the minimum price, maximum price, minimum quantity purchase / sale, 
+     * hidden whether the pair and the pair commission.
+     * 
+     * @return the active pair information
+     * @throws BtceFunctionalException
+     * @throws BtceTechnicalException
+     */
+    public Map<String,PairInfo> getInfo() throws BtceFunctionalException, BtceTechnicalException{
+        
+    	JSONObject jsonObject = publicHTTPRequest(PublicMethod.info, null);
+    	Map<String,PairInfo> pairInfo;
+		try {
+			pairInfo = _mapper.readValue(jsonObject.getJSONObject("pairs").toString(), new TypeReference<Map<String,PairInfo>>() { });
+		} catch (JsonParseException e) {
+			throw new BtceTechnicalException("BTC-e Json parse exeption", e);
+		} catch (JsonMappingException e) {
+			throw new BtceTechnicalException("BTC-e Json mapping exeption", e);
+		} catch (IOException e) {
+			throw new BtceTechnicalException("BTC-e IO exeption", e);
+		}
+    	
+ 
+    	return pairInfo;
     }
    
     

@@ -3,11 +3,11 @@
  */
 package org.geeek.btce;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -15,6 +15,7 @@ import org.geeek.btce.enums.Pair;
 import org.geeek.btce.exception.BtceFunctionalException;
 import org.geeek.btce.exception.BtceTechnicalException;
 import org.geeek.btce.model.Depth;
+import org.geeek.btce.model.PairInfo;
 import org.geeek.btce.model.Ticker;
 import org.geeek.btce.model.Trade;
 import org.junit.Before;
@@ -52,7 +53,7 @@ public class BtceClientApiTest {
 	public void testGetTicker() throws BtceFunctionalException, BtceTechnicalException {
 		
 		// Get the ticker for the pair
-		Ticker ticker = btceClientApi.getTicker(Pair.btc_eur);
+		Ticker ticker = btceClientApi.getTicker(Pair.ltc_eur);
 		
 		assertNotNull(ticker);
 		assertTrue(ticker.getAvg() > 0);
@@ -80,7 +81,7 @@ public class BtceClientApiTest {
 	public void testGetTrades() throws BtceFunctionalException, BtceTechnicalException {
 		
 		// Get the trades for the pair
-		List<Trade> trades = btceClientApi.getTrades(Pair.btc_eur);
+		List<Trade> trades = btceClientApi.getTrades(Pair.ltc_eur);
 		
 		assertNotNull(trades);
 		assertTrue(trades.get(0).getAmount() > 0);
@@ -104,7 +105,7 @@ public class BtceClientApiTest {
 	public void testGetDepth() throws BtceFunctionalException, BtceTechnicalException {
 		
 		// Get the trades for the pair
-		Depth depth = btceClientApi.getDepth(Pair.btc_eur);
+		Depth depth = btceClientApi.getDepth(Pair.ltc_eur);
 		
 		assertNotNull(depth);
 		assertTrue(depth.getAsks().get(0)[0] > 0);
@@ -112,4 +113,32 @@ public class BtceClientApiTest {
 		assertTrue(depth.getBids().get(0)[0] > 0);
 		assertTrue(depth.getBids().get(0)[1] > 0);
 	}
+	
+	
+	/**
+	 * Test method for {@link org.geeek.btce.BtceClientTradeApi#getInfo()}.
+	 * 
+	 * @throws IOException 
+	 * @throws BtceTechnicalException 
+	 * @throws BtceFunctionalException 
+	 * @throws JsonMappingException 
+	 * @throws JsonParseException 
+	 */
+	@Test
+	public void testGetInfo() throws BtceFunctionalException, BtceTechnicalException {
+		
+		// Get the trades for the pair
+		Map<String,PairInfo>  pairInfo = btceClientApi.getInfo();
+		
+		assertNotNull(pairInfo);
+		assertNotNull(pairInfo.get("btc_usd"));
+		assertTrue(pairInfo.get("btc_usd").getDecimal_places() == 3);
+		assertTrue(pairInfo.get("btc_usd").getMin_price() == 0.1);
+		assertTrue(pairInfo.get("btc_usd").getMax_price() == 3200);
+		assertTrue(pairInfo.get("btc_usd").getMin_amount() == 0.01);
+		assertFalse(pairInfo.get("btc_usd").isHidden());
+		assertTrue(pairInfo.get("btc_usd").getFee() == 0.2);
+	}
+	
+	
 }

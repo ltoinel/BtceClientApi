@@ -8,6 +8,9 @@ package org.geeek.btce.enums;
  */
 public enum PublicMethod {
 	
+	/** Get the pairs info */
+	info,
+	
 	/** Get the depth */
 	depth,
 	
