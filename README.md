@@ -8,9 +8,17 @@ This client uses :
 * Logback for the logging
 * Fluent-hc for the HTTP requests
 
+### Binary
+
+The jar file can be download directly on : 
+https://github.com/ltoinel/BtceClientApi/blob/master/build/BtceClientApi-1.0.0-SNAPSHOT.jar
+
+The library will be published in few days on a public maven repository.
+
 ### Features
 
 Supports Public API : https://btc-e.com/api/3/
+* Info
 * Depth
 * Ticker
 * Trades
@@ -21,7 +29,12 @@ Supports Private API : https://btc-e.com/tapi/
 * ActiveOrders
 * TradeHistory
 * TransHistory
-* getInfo
+* GetInfo
+
+### Todo list
+
+- [ ] Finalize the Unit tests
+
 
 ### Donate
 
