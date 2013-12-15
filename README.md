@@ -86,6 +86,9 @@ List<Trade> trades = btceClientApi.getTrades(Pair.btc_eur);
 
 // Get the depth for the pair
 Depth depth = btceClientApi.getDepth(Pair.btc_eur);
+
+// Get the pair information
+Map<String,PairInfo>  pairInfo = btceClientApi.getInfo();
 		
 ```
 

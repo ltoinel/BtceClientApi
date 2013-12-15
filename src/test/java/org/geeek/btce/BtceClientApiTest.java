@@ -127,7 +127,7 @@ public class BtceClientApiTest {
 	@Test
 	public void testGetInfo() throws BtceFunctionalException, BtceTechnicalException {
 		
-		// Get the trades for the pair
+		// Get the pair information
 		Map<String,PairInfo>  pairInfo = btceClientApi.getInfo();
 		
 		assertNotNull(pairInfo);
