@@ -33,7 +33,8 @@ Supports Private API : https://btc-e.com/tapi/
 
 ### Todo list
 
-[ ] Finalize the Unit tests
+[ ] To finalize the Unit tests
+[ ] To develop the business logic to help the users to trade at the bests prices
 
 
 ### Donate
