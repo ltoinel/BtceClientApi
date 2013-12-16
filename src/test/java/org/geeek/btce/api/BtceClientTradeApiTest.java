@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.geeek.btce;
+package org.geeek.btce.api;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -15,6 +15,7 @@ import java.util.Properties;
 
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
+import org.geeek.btce.api.BtceClientTradeApi;
 import org.geeek.btce.exception.BtceFunctionalException;
 import org.geeek.btce.exception.BtceTechnicalException;
 import org.geeek.btce.model.AccountInfo;
@@ -45,7 +46,7 @@ public class BtceClientTradeApiTest {
 	}
 
 	/**
-	 * Test method for {@link org.geeek.btce.BtceClientTradeApi#getAccountInfo()}.
+	 * Test method for {@link org.geeek.btce.api.BtceClientTradeApi#getAccountInfo()}.
 	 * 
 	 * @throws IOException 
 	 * @throws BtceFunctionalException 
@@ -74,7 +75,7 @@ public class BtceClientTradeApiTest {
 	}
 
 	/**
-	 * Test method for {@link org.geeek.btce.BtceClientTradeApi#getTransactionHistory(java.lang.Long, java.lang.Long, java.lang.Long, java.lang.Long, org.geeek.btce.enums.ListOrder, java.lang.Long, java.lang.Long)}.
+	 * Test method for {@link org.geeek.btce.api.BtceClientTradeApi#getTransactionHistory(java.lang.Long, java.lang.Long, java.lang.Long, java.lang.Long, org.geeek.btce.enums.ListOrder, java.lang.Long, java.lang.Long)}.
 	 */
 	@Test
 	public void testGetTransactionHistory() {
@@ -82,7 +83,7 @@ public class BtceClientTradeApiTest {
 	}
 
 	/**
-	 * Test method for {@link org.geeek.btce.BtceClientTradeApi#getTradeHistory(java.lang.Long, java.lang.Long, java.lang.Long, java.lang.Long, org.geeek.btce.enums.ListOrder, java.lang.Long, java.lang.Long, org.geeek.btce.enums.Pair)}.
+	 * Test method for {@link org.geeek.btce.api.BtceClientTradeApi#getTradeHistory(java.lang.Long, java.lang.Long, java.lang.Long, java.lang.Long, org.geeek.btce.enums.ListOrder, java.lang.Long, java.lang.Long, org.geeek.btce.enums.Pair)}.
 	 */
 	@Test
 	public void testGetTradeHistory() {
@@ -90,7 +91,7 @@ public class BtceClientTradeApiTest {
 	}
 
 	/**
-	 * Test method for {@link org.geeek.btce.BtceClientTradeApi#getActiveOrders()}.
+	 * Test method for {@link org.geeek.btce.api.BtceClientTradeApi#getActiveOrders()}.
 	 */
 	@Test
 	public void testGetActiveOrders() {
@@ -98,7 +99,7 @@ public class BtceClientTradeApiTest {
 	}
 
 	/**
-	 * Test method for {@link org.geeek.btce.BtceClientTradeApi#getActiveOrders(org.geeek.btce.enums.Pair)}.
+	 * Test method for {@link org.geeek.btce.api.BtceClientTradeApi#getActiveOrders(org.geeek.btce.enums.Pair)}.
 	 */
 	@Test
 	public void testGetActiveOrdersPair() {
@@ -106,7 +107,7 @@ public class BtceClientTradeApiTest {
 	}
 
 	/**
-	 * Test method for {@link org.geeek.btce.BtceClientTradeApi#trade(org.geeek.btce.enums.Pair, org.geeek.btce.enums.TransactionType, java.lang.Double, java.lang.Double)}.
+	 * Test method for {@link org.geeek.btce.api.BtceClientTradeApi#trade(org.geeek.btce.enums.Pair, org.geeek.btce.enums.TransactionType, java.lang.Double, java.lang.Double)}.
 	 */
 	@Test
 	public void testTrade() {
@@ -114,7 +115,7 @@ public class BtceClientTradeApiTest {
 	}
 
 	/**
-	 * Test method for {@link org.geeek.btce.BtceClientTradeApi#cancelOrder(java.lang.Long)}.
+	 * Test method for {@link org.geeek.btce.api.BtceClientTradeApi#cancelOrder(java.lang.Long)}.
 	 */
 	@Test
 	public void testCancelOrder() {
@@ -122,7 +123,7 @@ public class BtceClientTradeApiTest {
 	}
 
 	/**
-	 * Test method for {@link org.geeek.btce.BtceClientTradeApi#cancelAllOrders()}.
+	 * Test method for {@link org.geeek.btce.api.BtceClientTradeApi#cancelAllOrders()}.
 	 */
 	@Test
 	public void testCancelAllOrders() {
@@ -130,7 +131,7 @@ public class BtceClientTradeApiTest {
 	}
 
 	/**
-	 * Test method for {@link org.geeek.btce.BtceClientTradeApi#cancelAllOrders(org.geeek.btce.enums.Pair)}.
+	 * Test method for {@link org.geeek.btce.api.BtceClientTradeApi#cancelAllOrders(org.geeek.btce.enums.Pair)}.
 	 */
 	@Test
 	public void testCancelAllOrdersPair() {

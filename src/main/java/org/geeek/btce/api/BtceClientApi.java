@@ -1,4 +1,4 @@
-package org.geeek.btce;
+package org.geeek.btce.api;
 
 import java.io.IOException;
 import java.util.List;
@@ -20,9 +20,9 @@ import org.geeek.btce.enums.PublicMethod;
 import org.geeek.btce.exception.BtceFunctionalException;
 import org.geeek.btce.exception.BtceTechnicalException;
 import org.geeek.btce.model.Depth;
+import org.geeek.btce.model.PairInfo;
 import org.geeek.btce.model.Ticker;
 import org.geeek.btce.model.Trade;
-import org.geeek.btce.model.PairInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -54,7 +54,6 @@ public class BtceClientApi {
 	public BtceClientApi(){
 		this._mapper = new ObjectMapper();
 	}
-
 	
 	/**
      * Execute an HTTP query on the BTC-e public API.
@@ -219,6 +218,7 @@ public class BtceClientApi {
     	return depth.get(pair.name());
     }
     
+ 
     /**
      * This method provides all the information about currently active pairs, such as the maximum number of digits 
      * after the decimal point in the auction, the minimum price, maximum price, minimum quantity purchase / sale, 
@@ -241,7 +241,6 @@ public class BtceClientApi {
 		} catch (IOException e) {
 			throw new BtceTechnicalException("BTC-e IO exeption", e);
 		}
-    	
  
     	return pairInfo;
     }

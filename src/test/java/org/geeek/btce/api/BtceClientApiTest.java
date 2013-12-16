@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.geeek.btce;
+package org.geeek.btce.api;
 
 import static org.junit.Assert.*;
 
@@ -11,6 +11,7 @@ import java.util.Map;
 
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
+import org.geeek.btce.api.BtceClientApi;
 import org.geeek.btce.enums.Pair;
 import org.geeek.btce.exception.BtceFunctionalException;
 import org.geeek.btce.exception.BtceTechnicalException;
@@ -41,7 +42,7 @@ public class BtceClientApiTest {
 
 
 	/**
-	 * Test method for {@link org.geeek.btce.BtceClientTradeApi#getTicker(org.geeek.btce.enums.Pair)}.
+	 * Test method for {@link org.geeek.btce.api.BtceClientTradeApi#getTicker(org.geeek.btce.enums.Pair)}.
 	 * 
 	 * @throws IOException 
 	 * @throws BtceTechnicalException 
@@ -69,7 +70,7 @@ public class BtceClientApiTest {
 	
 
 	/**
-	 * Test method for {@link org.geeek.btce.BtceClientTradeApi#getTrades(org.geeek.btce.enums.Pair)}.
+	 * Test method for {@link org.geeek.btce.api.BtceClientTradeApi#getTrades(org.geeek.btce.enums.Pair)}.
 	 * 
 	 * @throws IOException 
 	 * @throws BtceTechnicalException 
@@ -93,7 +94,7 @@ public class BtceClientApiTest {
 
 	
 	/**
-	 * Test method for {@link org.geeek.btce.BtceClientTradeApi#getDepth(org.geeek.btce.enums.Pair)}.
+	 * Test method for {@link org.geeek.btce.api.BtceClientTradeApi#getDepth(org.geeek.btce.enums.Pair)}.
 	 * 
 	 * @throws IOException 
 	 * @throws BtceTechnicalException 
@@ -116,7 +117,7 @@ public class BtceClientApiTest {
 	
 	
 	/**
-	 * Test method for {@link org.geeek.btce.BtceClientTradeApi#getInfo()}.
+	 * Test method for {@link org.geeek.btce.api.BtceClientTradeApi#getInfo()}.
 	 * 
 	 * @throws IOException 
 	 * @throws BtceTechnicalException 
@@ -139,6 +140,8 @@ public class BtceClientApiTest {
 		assertFalse(pairInfo.get("btc_usd").isHidden());
 		assertTrue(pairInfo.get("btc_usd").getFee() == 0.2);
 	}
+	
+
 	
 	
 }
