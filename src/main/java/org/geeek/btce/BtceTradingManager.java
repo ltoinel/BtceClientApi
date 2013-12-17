@@ -7,6 +7,7 @@ import java.util.List;
 import org.geeek.btce.api.BtceClientApi;
 import org.geeek.btce.api.BtceClientTradeApi;
 import org.geeek.btce.enums.Pair;
+import org.geeek.btce.enums.TransactionType;
 import org.geeek.btce.exception.BtceFunctionalException;
 import org.geeek.btce.exception.BtceTechnicalException;
 import org.geeek.btce.model.Depth;
@@ -46,39 +47,73 @@ public class BtceTradingManager {
      * 
      * @param pair the pair
      * @param buyAmount the amount to buy
-     * @return the best asks for order at the 
+	 * @param orders the bests orders to select
+     * @return the best orders to buy or to sell
      * 
      * @throws BtceTechnicalException 
      * @throws BtceFunctionalException 
      */
-    public List<Double[]> getBestAsksForOrder(Pair pair,double buyAmount) throws BtceFunctionalException, BtceTechnicalException{
+    public List<Double[]> selectOrders(Pair pair, double buyAmount, List<Double[]> orders) throws BtceFunctionalException, BtceTechnicalException{
     
-		Depth depth = _btceClientApi.getDepth(pair);
-		
-		// Get the asks list to extract prices
-		List<Double[]> asks = depth.getAsks();
-		
-		List<Double[]> orders = new ArrayList<Double[]>();
+		List<Double[]> selection = new ArrayList<Double[]>();
 		Double amount;
 		
 		// For each asks order buy value
-		for (Iterator<Double[]> iterator = asks.iterator(); iterator.hasNext();) {
-			Double[] ask = iterator.next();
-			amount = ask[0] * ask[1];
+		for (Iterator<Double[]> iterator = orders.iterator(); iterator.hasNext();) {
+			Double[] order = iterator.next();
+			amount = order[0] * order[1];
 
 			if (buyAmount > amount){
 				buyAmount = buyAmount - amount;
-				orders.add(ask);
-				LOGGER.debug("Order all  : rate = {} - amount = {} - total = {} - pair = {}",ask[0], ask[1], amount, pair.name());
+				selection.add(order);
+				LOGGER.debug("Order all  : rate = {} - amount = {} - total = {} - pair = {}",order[0], order[1], amount, pair.name());
 			} else {
-				ask[1] = buyAmount / ask[0];
-				orders.add(ask);
-				LOGGER.debug("Order partial : rate = {} - amount = {} - total = {} - pair = {}",ask[0], ask[1], buyAmount, pair.name());
+				order[1] = buyAmount / order[0];
+				selection.add(order);
+				LOGGER.debug("Order partial : rate = {} - amount = {} - total = {} - pair = {}",order[0], order[1], buyAmount, pair.name());
 				break;
 			}
 		}
 
-		return orders;
+		return selection;
+    }
+    
+    /**
+     * Buy immediate.
+     * 
+     * @param pair
+     * @param buyAmount
+     * @throws BtceTechnicalException 
+     * @throws BtceFunctionalException 
+     */
+    public void buyImmediate(Pair pair,double buyAmount) throws BtceFunctionalException, BtceTechnicalException{
+    	
+    	Depth depth = _btceClientApi.getDepth(pair);
+    	
+    	List<Double[]> selection = selectOrders(pair, buyAmount, depth.getAsks());
+    	for (Iterator<Double[]> iterator = selection.iterator(); iterator.hasNext();) {
+			 Double[] ask = iterator.next();
+			_btceClientTradeApi.trade(pair, TransactionType.buy, ask[0], ask[1]);
+		}
+    }
+    
+    /**
+     * Sell immediate.
+     * 
+     * @param pair
+     * @param buyAmount
+     * @throws BtceTechnicalException 
+     * @throws BtceFunctionalException 
+     */
+    public void sellImmediate(Pair pair,double buyAmount) throws BtceFunctionalException, BtceTechnicalException{
+    	
+    	Depth depth = _btceClientApi.getDepth(pair);
+    	
+    	List<Double[]> selection = selectOrders(pair, buyAmount, depth.getBids());
+    	for (Iterator<Double[]> iterator = selection.iterator(); iterator.hasNext();) {
+			 Double[] ask = iterator.next();
+			_btceClientTradeApi.trade(pair, TransactionType.sell, ask[0], ask[1]);
+		}
     }
     
 }
