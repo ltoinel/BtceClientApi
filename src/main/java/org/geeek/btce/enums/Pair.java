@@ -37,4 +37,71 @@ public enum Pair {
 	
 	/** XPM */
 	xpm_btc;
+	
+	/**
+	 * @return true if it's BTC.
+	 */
+	public boolean isBtc(){
+		return name().startsWith("btc_");
+	}
+	
+	/**
+	 * @return true if it's LTC.
+	 */
+	public boolean isLtc(){
+		return name().startsWith("ltc_");
+	}
+	
+	/**
+	 * @return true if it's NMC.
+	 */
+	public boolean isNmc(){
+		return name().startsWith("nmc_");
+	}
+	
+	/**
+	 * @return true if it's NVC.
+	 */
+	public boolean isNvc(){
+		return name().startsWith("nvc_");
+	}
+
+	/**
+	 * @return true if it's USD.
+	 */
+	public boolean isUsd(){
+		return name().startsWith("usd_");
+	}
+	
+	/**
+	 * @return true if it's EUR.
+	 */
+	public boolean isEur(){
+		return name().startsWith("eur_");
+	}
+	
+	/**
+	 * @return true if it's TRC.
+	 */
+	public boolean isTrc(){
+		return name().startsWith("trc_");
+	}
+	
+	/**
+	 * @return true if it's PPC.
+	 */
+	public boolean isPpc(){
+		return name().startsWith("ppc_");
+	}
+	
+	/**
+	 * @return true if it's FTC.
+	 */
+	public boolean isFtc(){
+		return name().startsWith("ftc_");
+	}
+	
+	public boolean isXpm(){
+		return name().startsWith("xpm_");
+	}
 }
