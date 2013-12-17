@@ -7,14 +7,31 @@ package org.geeek.btce.model;
  */
 public class Ticker {
 
+	/** Maximum price. */
 	private double high;
+	
+	/** Minimum price. */
 	private double low;
+	
+	/** Average price */
 	private double avg;
+	
+	/** Trading volume. */
 	private double vol;
+	
+	/** The volume of trading in the currency. */
 	private double vol_cur;
+	
+	/** The last price. */
 	private double last;
+	
+	/** The purchase price. */
 	private double buy;
+	
+	/** The selling price. */
 	private double sell;
+	
+	/** Last update cache. */
 	private long updated;
 	
 	/**

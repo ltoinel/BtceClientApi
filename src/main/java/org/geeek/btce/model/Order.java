@@ -10,37 +10,37 @@ import org.geeek.btce.enums.TransactionType;
  */
 public class Order {
 	
-	// Order Id
+	/** Order Id. */
 	private long order_id;
 	
-	// Order pair.
+	/** Order pair. */
 	private Pair pair;
 	
-	// Transaction type.
+	/** Transaction type. */
 	private TransactionType type;
 	
-	// Amount of the order.
+	/** Amount of the order. */
 	private double amount;
 	
-	// Rate of the order.
+	/** Rate of the order. */
 	private double rate;
 	
-	// Timestamp when the order has been created.
+	/** Timestamp when the order has been created. */
 	private long timestamp_created;
 	
-	// Order status
+	/** Order status. */
 	private int status;
 
-	// True if this order is yours
+	/** True if this order is yours. */
 	private boolean is_your_order;
 	
-	// Timestamp
+	/** Timestamp. */
 	private long timestamp;
 	
-	// Currency used
+	/** Currency used. */
 	private String currency;
 	
-	// Description
+	/** Description. */
 	private String desc;
 
 	/**

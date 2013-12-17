@@ -8,16 +8,16 @@ package org.geeek.btce.model;
  */
 public class Transaction {
 
-	// Amount received
+	/** Amount received */
 	private double received;
 	
-	// Amount remains
+	/** Amount remains */
 	private double remains;
 	
-	// Order id
+	/** Order id */
 	private long order_id;
 	
-	// Funds status
+	/** Funds status */
 	private Funds funds;
 	
 	

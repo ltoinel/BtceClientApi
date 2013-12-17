@@ -8,19 +8,19 @@ package org.geeek.btce.model;
  */
 public class AccountInfo {
 	
-	// Funds on the BTC-e Account
+	/** Funds on the BTC-e Account. */
 	private Funds funds;
 	
-	// Rights on for the bot
+	/** Rights on the API. */
 	private Rights rights;
 
-	// Transaction count
+	/** Transaction count. */
 	private long transaction_count;
 	
-	// Open orders
+	/** Open orders. */
 	private long open_orders;
 	
-	// Server time
+	/** Server time. */
 	private long server_time;
 
 	

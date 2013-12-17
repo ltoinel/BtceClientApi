@@ -7,22 +7,22 @@ package org.geeek.btce.model;
  */
 public class PairInfo {
 
-	/** Number of decimal places allowed when bidding */
+	/** Number of decimal places allowed when bidding. */
 	double decimal_places;
 	
-	/** Minimum price allowed by the tender */
+	/** Minimum price allowed by the tender. */
 	double min_price;
 	
-	/** The maximum price allowed by the tender */
+	/** The maximum price allowed by the tender. */
 	double max_price;
 	
-	/** Minimum quantity allowed for purchase / sale */
+	/** Minimum quantity allowed for purchase / sale. */
 	double min_amount;
 	
-	/** hidden whether the pair */
+	/** Hidden whether the pair. */
 	boolean hidden;
 	
-	/** Commission couples */
+	/** Commission couples. */
 	double fee;
 
 	/**

@@ -9,10 +9,10 @@ import java.util.List;
  */
 public class Depth {
 
-	// Asks list 
+	/** Asks list. */
 	private List<Double[]> asks;
 	
-	// Bids list 
+	/** Bids list. */
 	private List<Double[]> bids;
 
 	/**

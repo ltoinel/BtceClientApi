@@ -9,19 +9,19 @@ import org.geeek.btce.enums.TradeType;
  */
 public class Trade {
 
-	// The trade type
+	/** The trade type. */
 	private TradeType type;
 	
-	//The trade price
+	/** The trade price. */
 	private double price;
 	
-	// The trade amount
+	/** The trade amount. */
 	private double amount;
 	
-	// The trade id
+	/** The trade id. */
 	private double tid;
 	
-	// The trade timestamp
+	/** The trade timestamp. */
 	private long timestamp;
 
 	/**

@@ -9,13 +9,13 @@ package org.geeek.btce.model;
  */
 public class Rights {
 
-	// Info access
+	/** Info access right. */
 	private boolean info;
 	
-	// Trade access
+	/** Trade access right. */
 	private boolean trade;
 	
-	// Withdraw access
+	/** Withdraw access right. */
 	private boolean withdraw;
 	
 	

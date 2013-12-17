@@ -7,37 +7,37 @@ package org.geeek.btce.model;
  */
 public class Funds {
 
-	// USD fund
+	/** USD fund. */
 	private double usd;
 	
-	// BTC fund
+	/** BTC fund. */
 	private double btc;
 	
-	// LTC fund
+	/** LTC fund. */
 	private double ltc;
 	
-	// NMC fund
+	/** NMC fund. */
 	private double nmc;
 	
-	// RUR fund
+	/** RUR fund. */
 	private double rur;
 	
-	// EUR fund
+	/** EUR fund. */
 	private double eur;
 	
-	// NVC fund
+	/** NVC fund. */
 	private double nvc;
 	
-	// TRC fund
+	/** TRC fund. */
 	private double trc;
 	
-	// PPC fund
+	/** PPC fund. */
 	private double ppc;
 	
-	// FTC fund
+	/** FTC fund. */
 	private double ftc;
 	
-	// XPM fund
+	/** XPM fund. */
 	private double xpm;
 
 	/**
