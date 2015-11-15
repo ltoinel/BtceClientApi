@@ -26,6 +26,8 @@ public enum Pair {
 	/** EUR */
 	eur_usd,
 	
+	eur_rur,
+	
 	/** TRC */
 	trc_btc,
 	

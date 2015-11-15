@@ -39,6 +39,10 @@ public class Funds {
 	
 	/** XPM fund. */
 	private double xpm;
+	
+	private double cnh;
+
+	private double gbp;
 
 	/**
 	 * @return the usd
@@ -192,6 +196,22 @@ public class Funds {
 	 */
 	public void setXpm(double xpm) {
 		this.xpm = xpm;
+	}
+
+	public double getCnh() {
+		return cnh;
+	}
+
+	public void setCnh(double cnh) {
+		this.cnh = cnh;
+	}
+
+	public double getGbp() {
+		return gbp;
+	}
+
+	public void setGbp(double gbp) {
+		this.gbp = gbp;
 	}
 
 }

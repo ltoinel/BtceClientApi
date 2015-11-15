@@ -59,7 +59,7 @@ public class BtceClientTradeApi {
 	private final static String API_URI = "https://btc-e.com/tapi/";
 	
 	// Nonce token  
-	private long _nonce = 0;
+	private long _nonce = 1;
 
 	// Private API Key
 	private String _key;
@@ -224,12 +224,12 @@ public class BtceClientTradeApi {
 	private boolean checkNonceError(String errorMessage) {
 		
 		// If nonce error, we increment the once value
-		Pattern r  = Pattern.compile("invalid nonce parameter; on key:(\\d+), you sent:(\\d+)");
+		Pattern r  = Pattern.compile("invalid nonce parameter; .+, you should send:(\\d+)");
 		Matcher m = r.matcher(errorMessage);
 				
 		if (m.find()){
 			LOGGER.warn("Invalid nonce parameter, we use the good one");
-			_nonce = Long.parseLong(m.group(1)) + 1;
+			_nonce = Long.parseLong(m.group(1));
 			return true;
 		}
 		

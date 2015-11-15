@@ -129,16 +129,16 @@ public class BtceClientApiTest {
 	public void testGetInfo() throws BtceFunctionalException, BtceTechnicalException {
 		
 		// Get the pair information
-		Map<String,PairInfo>  pairInfo = btceClientApi.getInfo();
+		Map<Pair,PairInfo>  pairInfo = btceClientApi.getInfo();
 		
 		assertNotNull(pairInfo);
-		assertNotNull(pairInfo.get("btc_usd"));
-		assertTrue(pairInfo.get("btc_usd").getDecimal_places() == 3);
-		assertTrue(pairInfo.get("btc_usd").getMin_price() == 0.1);
-		assertTrue(pairInfo.get("btc_usd").getMax_price() == 3200);
-		assertTrue(pairInfo.get("btc_usd").getMin_amount() == 0.01);
-		assertFalse(pairInfo.get("btc_usd").isHidden());
-		assertTrue(pairInfo.get("btc_usd").getFee() == 0.2);
+		assertNotNull(pairInfo.get(Pair.btc_usd));
+		assertTrue(pairInfo.get(Pair.btc_usd).getDecimal_places() == 3);
+		assertTrue(pairInfo.get(Pair.btc_usd).getMin_price() == 0.1);
+		assertTrue(pairInfo.get(Pair.btc_usd).getMax_price() == 3200);
+		assertTrue(pairInfo.get(Pair.btc_usd).getMin_amount() == 0.01);
+		assertFalse(pairInfo.get(Pair.btc_usd).isHidden());
+		assertTrue(pairInfo.get(Pair.btc_usd).getFee() == 0.2);
 	}
 	
 
