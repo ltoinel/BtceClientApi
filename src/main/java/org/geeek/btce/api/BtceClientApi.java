@@ -228,12 +228,12 @@ public class BtceClientApi {
      * @throws BtceFunctionalException
      * @throws BtceTechnicalException
      */
-    public Map<String,PairInfo> getInfo() throws BtceFunctionalException, BtceTechnicalException{
+    public Map<Pair,PairInfo> getInfo() throws BtceFunctionalException, BtceTechnicalException{
         
     	JSONObject jsonObject = publicHTTPRequest(PublicMethod.info, null);
-    	Map<String,PairInfo> pairInfo;
+    	Map<Pair,PairInfo> pairInfo;
 		try {
-			pairInfo = _mapper.readValue(jsonObject.getJSONObject("pairs").toString(), new TypeReference<Map<String,PairInfo>>() { });
+			pairInfo = _mapper.readValue(jsonObject.getJSONObject("pairs").toString(), new TypeReference<Map<Pair,PairInfo>>() { });
 		} catch (JsonParseException e) {
 			throw new BtceTechnicalException("BTC-e Json parse exeption", e);
 		} catch (JsonMappingException e) {
